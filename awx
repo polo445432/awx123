@@ -6,3 +6,19 @@
  sudo apt install -y docker-ce docker-ce-cli containerd.io
  sudo usermod -aG docker $USER
  sudo systemctl restart docker
+ 
+ curl -s https://api.github.com/repos/docker/compose/releases/latest \
+  | grep browser_download_url | grep docker-compose-Linux-x86_64 \
+  | cut -d '"' -f 4 | wget -qi -
+sudo chmod +x docker-compose-Linux-x86_64
+sudo mv docker-compose-Linux-x86_64 /usr/local/bin/docker-compose
+
+
+sudo apt install -y ansible
+
+sudo apt install -y python3-pip git pwgen
+sudo pip3 install docker-compose==1.28.5
+wget https://github.com/ansible/awx/archive/17.1.0.zip
+unzip 17.1.0.zip
+cd awx-17.1.0 /installer
+pwgen -N 1 -s 30
