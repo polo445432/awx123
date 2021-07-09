@@ -9,3 +9,15 @@ kubectl get pods -A
 
 kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/devel/deploy/awx-operator.yaml
 kubectl get pods
+
+cat <<EOF | kubectl create -f -
+vim awx-deploy.yml
+
+kubectl apply -f awx-deploy.yml
+kubectl get pods -l "app.kubernetes.io/managed-by=awx-operator"
+kubectl logs -f deployments/awx-operator
+kubectl get pvc
+ls /var/lib/rancher/k3s/storage/
+kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator"
+kubectl edit svc awx-service
+kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator"
