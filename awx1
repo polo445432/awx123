@@ -12,6 +12,7 @@ sudo apt-get update -y
 sudo apt-get install -y docker.io
 sudo apt-get install -y containerd.io
 curl -LO  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube-linux-amd64 && sudo mv minikube-linux-amd64 /usr/local/bin/
+curl -LO  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 && chmod +x minikube-linux-amd64 && sudo mv minikube-linux-amd64 /home/linuxbrew/.linuxbrew/bin
 sudo usermod -aG docker $USER
 
 minikube start --addons=ingress --cpus=1 --install-addons=true --kubernetes-version=stable --memory=1g
