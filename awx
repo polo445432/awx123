@@ -25,3 +25,7 @@ unzip 17.1.0.zip
 cd awx/installer/
 ls -al
 cd awx-17.1.0/installer/
+
+
+export DOCKER_CLIENT_TIMEOUT=120
+export COMPOSE_HTTP_TIMEOUT=120
