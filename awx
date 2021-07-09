@@ -10,8 +10,10 @@
 curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
-sudo apt update 
-sudo apt install -y ansible
+ sudo apt update
+ sudo apt install software-properties-common
+sudo add-apt-repository --yes --update ppa:ansible/ansible
+ sudo apt install ansible
 
 sudo apt install python3-pip git pwgen vim
 sudo pip3 install requests
