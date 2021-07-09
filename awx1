@@ -15,3 +15,25 @@ curl -LO  https://storage.googleapis.com/minikube/releases/latest/minikube-linux
 sudo usermod -aG docker $USER
 
 minikube start --addons=ingress --cpus=1 --install-addons=true --kubernetes-version=stable --memory=1g
+
+kubectl get nodes
+kubectl get pods
+kubectl get pods -A
+
+kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/0.10.0/deploy/awx-operator.yaml
+vi awx-demo.yml
+
+
+
+
+kubectl apply -f awx-demo.yml
+kubectl get pods -l "app.kubernetes.io/managed-by=awx-operator"
+kubectl get svc -l "app.kubernetes.io/managed-by=awx-operator"
+
+kubectl get secrets
+kubectl get secret awx-demo-admin-password -o jsonpath="{.data.password}" | base64 --decode
+
+kubectl expose deployment awx-demo --type=LoadBalancer --port=8080
+kubectl port-forward svc/awx-demo-service --address 0.0.0.0 30886:80
+
+
